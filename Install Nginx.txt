@@ -1,0 +1,91 @@
+How I Launched an AWS EC2 Ubuntu Instance, Connected via SSH, and Deployed a Website with Nginx
+Introduction
+
+As I continue my AWS Cloud & DevOps journey, I wanted to document my step-by-step process of:
+Launching an AWS EC2 Ubuntu instance
+Connecting via SSH using Git Bash
+Installing Nginx
+
+Deploying a custom HTML/CSS webpage
+
+This is a great beginner-friendly project for anyone starting with AWS, Linux, and web servers!
+
+Step 1: Launching an AWS EC2 Ubuntu Instance
+Log in to AWS Console
+Go to AWS Console and sign in.
+Navigate to EC2 Dashboard
+Search for EC2 in the AWS services search bar.
+Launch an Instance
+Click "Launch Instance" → Name it 
+Select Ubuntu Server 
+Choose t2.micro (Free Tier eligible).
+Create a new key pair (e.g., web-server-key.pem) and download it.
+Keep all other settings default and click "Launch Instance".
+
+Note the Public IPv4 DNS
+
+After launch, go to EC2 Instances → Copy the Public IPv4 DNS (e.g., ec2-12-34-56-7.compute-1.amazonaws.com).
+
+Step 2: Connecting to EC2 via SSH (Git Bash)
+Open Git Bash (Windows) or Terminal (Mac/Linux).
+
+Navigate to the folder where your .pem key is stored.
+
+bash
+cd ~/Downloads  # or wherever your key is
+Set secure permissions for the key:
+
+bash
+chmod 400 web-server-key.pem
+SSH into the EC2 instance:
+
+bash
+ssh -i "web-server-key.pem" ubuntu@ec2-12-34-56-78.compute-1.amazonaws.com
+Type yes if prompted about authenticity.
+
+✅ You’re now connected to your Ubuntu EC2 instance!
+
+Step 3: Installing Nginx (Web Server)
+Update Ubuntu packages:
+
+command:-
+sudo apt update && sudo apt upgrade -y
+Install Nginx:
+
+command:-
+sudo apt install nginx -y
+Start & Enable Nginx:
+
+command:-
+sudo systemctl start nginx
+sudo systemctl enable nginx
+Check if Nginx is running:
+
+command:-
+sudo systemctl status nginx
+You should see active (running).
+
+Test in Browser
+
+Open your browser and enter your EC2 Public IPv4 
+Important https will not work you need to writr http go see runing server
+
+You should see the Nginx welcome page!
+
+Step 4: Deploying a Custom HTML/CSS Website
+Navigate to Nginx’s default web directory:
+
+command:-
+cd /var/www/html
+Remove default Nginx page:
+
+command:-
+sudo rm index.nginx-debian.html
+Create a new index.html file using Vim:
+
+bash
+sudo vim index.html
+Paste the HTML/CSS code (Press i to enter insert mode):
+to save press esc and :wq 
+
+done done done done 
