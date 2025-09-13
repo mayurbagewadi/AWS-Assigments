@@ -1,6 +1,5 @@
-If any problum go to chatgpt
 
-Create script to fetch EBS volume in excel**
+<h1>Create script to fetch EBS volume in excel</h1>
 
 create iam user 
    Add Permission 
